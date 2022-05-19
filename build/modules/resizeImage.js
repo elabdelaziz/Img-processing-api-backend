@@ -61,7 +61,9 @@ var resizeImage = function (req, res) { return __awaiter(void 0, void 0, void 0,
             case 2:
                 isFileExists = _b.sent();
                 if (!isFileExists) return [3 /*break*/, 3];
-                res.sendFile("/".concat(imagePath_1), { root: path_1.default.join(__dirname, '..', "/thumb") });
+                res.sendFile("/".concat(imagePath_1), {
+                    root: path_1.default.join(__dirname, '..', "/thumb"),
+                });
                 return [3 /*break*/, 5];
             case 3: return [4 /*yield*/, (0, newResize_1.default)(w, h, f, exports.currentDir)];
             case 4:
