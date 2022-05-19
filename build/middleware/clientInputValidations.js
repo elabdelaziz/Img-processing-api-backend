@@ -9,10 +9,17 @@ var clientInputValidations = function (req, res, next) {
             res.status(400).send('Error: Parameter(s) missing..');
             return;
         }
-        if (paramType === 'width' || paramType === 'height') {
+        if (paramType === 'width') {
             var value = parseInt(req.query[paramType]);
             if (!value || isNaN(value)) {
-                res.status(400).send('width and height should be numbers');
+                res.status(400).send('width should be a number');
+                return;
+            }
+        }
+        if (paramType === 'height') {
+            var value = parseInt(req.query[paramType]);
+            if (!value || isNaN(value)) {
+                res.status(400).send('height should be a number');
                 return;
             }
         }
