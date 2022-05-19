@@ -9,10 +9,4 @@ describe('test endpoint response error', () => {
         expect(res.status).toBe(400)
     })
 
-    it('gets the endpoint with img', async () => {
-        const res = await req.get(
-            '/process?filename=full-img&width=600&height=600'
-        )
-        expect(res.ok).toBeTruthy()
-    })
 })

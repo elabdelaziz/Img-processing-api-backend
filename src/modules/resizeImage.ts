@@ -16,14 +16,14 @@ const resizeImage = async (req: Request, res: Response): Promise<void> => {
     try {
         const imagePath = `${f}${w}x${h}.jpg`
         const isFileExists = await fileExistsChecker(
-            path.join('src/thumb', imagePath)
+            path.join(__dirname, '..',`thumb/${imagePath}`)
         )
 
         if (isFileExists) {
-            res.sendFile(`/${imagePath}`, { root: path.join('src/thumb/') })
+            res.sendFile(`/${imagePath}`, { root: path.join(__dirname, '..',`/thumb`) })
         } else {
             const resized = await newResize(w, h, f, currentDir)
-            resized.toFile(`src/thumb/${imagePath}`, (err: Error) => {
+            resized.toFile(path.join(__dirname, '..',`thumb/${imagePath}`), (err: Error) => {
                 if (err) {
                     res.status(403).send({
                         ok: 'failed',
@@ -31,7 +31,7 @@ const resizeImage = async (req: Request, res: Response): Promise<void> => {
                     })
                 } else {
                     res.sendFile(`${imagePath}`, {
-                        root: path.join('./src/thumb'),
+                        root: path.join(__dirname, '..',`/thumb`),
                     })
                 }
             })

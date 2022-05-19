@@ -55,7 +55,7 @@ describe('Sharp', function () {
                     return [4 /*yield*/, (0, newResize_1.default)(width, height, filename, resizeImage_1.currentDir)];
                 case 1:
                     response = _a.sent();
-                    response.toFile("src/thumb/".concat(imagePath), function (err) {
+                    response.toFile(path_1.default.join(resizeImage_1.currentDir, "/thumb/".concat(imagePath)), function (err) {
                         expect(err.message).toEqual("Input file is missing: ".concat(path_1.default.join(resizeImage_1.currentDir, "".concat(filename, ".jpg"))));
                     });
                     return [2 /*return*/];
@@ -74,7 +74,7 @@ describe('Sharp', function () {
                     return [4 /*yield*/, (0, newResize_1.default)(width, height, filename, resizeImage_1.currentDir)];
                 case 1:
                     response = _a.sent();
-                    response.toFile("src/thumb/".concat(imagePath), function (err) {
+                    response.toFile(path_1.default.join(resizeImage_1.currentDir, "/thumb/".concat(imagePath)), function (err) {
                         expect(err.message).toBeFalsy();
                     });
                     return [2 /*return*/];

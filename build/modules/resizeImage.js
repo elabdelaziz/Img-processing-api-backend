@@ -57,16 +57,16 @@ var resizeImage = function (req, res) { return __awaiter(void 0, void 0, void 0,
             case 1:
                 _b.trys.push([1, 6, , 7]);
                 imagePath_1 = "".concat(f).concat(w, "x").concat(h, ".jpg");
-                return [4 /*yield*/, (0, fileExistsChecker_1.default)(path_1.default.join('src/thumb', imagePath_1))];
+                return [4 /*yield*/, (0, fileExistsChecker_1.default)(path_1.default.join(__dirname, '..', "thumb/".concat(imagePath_1)))];
             case 2:
                 isFileExists = _b.sent();
                 if (!isFileExists) return [3 /*break*/, 3];
-                res.sendFile("/".concat(imagePath_1), { root: path_1.default.join('src/thumb/') });
+                res.sendFile("/".concat(imagePath_1), { root: path_1.default.join(__dirname, '..', "/thumb") });
                 return [3 /*break*/, 5];
             case 3: return [4 /*yield*/, (0, newResize_1.default)(w, h, f, exports.currentDir)];
             case 4:
                 resized = _b.sent();
-                resized.toFile("src/thumb/".concat(imagePath_1), function (err) {
+                resized.toFile(path_1.default.join(__dirname, '..', "thumb/".concat(imagePath_1)), function (err) {
                     if (err) {
                         res.status(403).send({
                             ok: 'failed',
@@ -75,7 +75,7 @@ var resizeImage = function (req, res) { return __awaiter(void 0, void 0, void 0,
                     }
                     else {
                         res.sendFile("".concat(imagePath_1), {
-                            root: path_1.default.join('./src/thumb'),
+                            root: path_1.default.join(__dirname, '..', "/thumb"),
                         });
                     }
                 });
