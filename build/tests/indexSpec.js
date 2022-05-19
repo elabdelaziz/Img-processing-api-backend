@@ -55,16 +55,4 @@ describe('test endpoint response error', function () {
             }
         });
     }); });
-    it('gets the endpoint with img', function () { return __awaiter(void 0, void 0, void 0, function () {
-        var res;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, req.get('/process?filename=full-img&width=600&height=600')];
-                case 1:
-                    res = _a.sent();
-                    expect(res.ok).toBeTruthy();
-                    return [2 /*return*/];
-            }
-        });
-    }); });
 });

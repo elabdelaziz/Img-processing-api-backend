@@ -51,7 +51,6 @@ var newResize = function (width, height, filename, currentDir) { return __awaite
                 return [4 /*yield*/, (0, sharp_1.default)(current).resize(width, height)];
             case 1:
                 editedImg = _a.sent();
-                console.log(__dirname);
                 return [2 /*return*/, editedImg];
         }
     });
