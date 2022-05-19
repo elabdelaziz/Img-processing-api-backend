@@ -41,13 +41,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.newResize = void 0;
 var sharp_1 = __importDefault(require("sharp"));
-var newResize = function (width, height, filename) { return __awaiter(void 0, void 0, void 0, function () {
-    var editedImg;
+var path_1 = __importDefault(require("path"));
+var newResize = function (width, height, filename, currentDir) { return __awaiter(void 0, void 0, void 0, function () {
+    var current, editedImg;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, sharp_1.default)("src/full/".concat(filename, ".jpg")).resize(width, height)];
+            case 0:
+                current = path_1.default.join(currentDir, "".concat(filename, ".jpg"));
+                return [4 /*yield*/, (0, sharp_1.default)(current).resize(width, height)];
             case 1:
                 editedImg = _a.sent();
+                console.log(__dirname);
                 return [2 /*return*/, editedImg];
         }
     });

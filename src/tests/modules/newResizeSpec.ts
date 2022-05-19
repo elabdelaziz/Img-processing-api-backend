@@ -1,5 +1,6 @@
 import newResize from '../../utils/newResize'
-
+import path from 'path'
+import { currentDir } from '../../modules/resizeImage'
 describe('Sharp', () => {
     it('should return an error message if file not provided', async () => {
         const filename = 'noImg'
@@ -7,10 +8,13 @@ describe('Sharp', () => {
         const width = 100
         const imagePath = `${filename}${width}x${height}.jpg`
 
-        const response = await newResize(width, height, filename)
+        const response = await newResize(width, height, filename, currentDir)
         response.toFile(`src/thumb/${imagePath}`, (err: Error) => {
             expect(err.message).toEqual(
-                `Input file is missing: src/full/${filename}.jpg`
+                `Input file is missing: ${path.join(
+                    currentDir,
+                    `${filename}.jpg`
+                )}`
             )
         })
     })
@@ -21,7 +25,7 @@ describe('Sharp', () => {
         const width = 100
         const imagePath = `${filename}${width}x${height}.jpg`
 
-        const response = await newResize(width, height, filename)
+        const response = await newResize(width, height, filename, currentDir)
         response.toFile(`src/thumb/${imagePath}`, (err: Error) => {
             expect(err.message).toBeFalsy()
         })

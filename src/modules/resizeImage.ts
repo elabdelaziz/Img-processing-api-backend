@@ -4,6 +4,8 @@ import { Response, Request } from 'express'
 import fileExistsChecker from '../utils/fileExistsChecker'
 import newResize from '../utils/newResize'
 
+export const currentDir = path.join(__dirname, '..', '..', '/full')
+
 const resizeImage = async (req: Request, res: Response): Promise<void> => {
     const { filename, height, width } = req.query
 
@@ -20,7 +22,7 @@ const resizeImage = async (req: Request, res: Response): Promise<void> => {
         if (isFileExists) {
             res.sendFile(`/${imagePath}`, { root: path.join('src/thumb/') })
         } else {
-            const resized = await newResize(w, h, f)
+            const resized = await newResize(w, h, f, currentDir)
             resized.toFile(`src/thumb/${imagePath}`, (err: Error) => {
                 if (err) {
                     res.status(403).send({

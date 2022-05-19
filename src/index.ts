@@ -7,6 +7,6 @@ const PORT = 3000
 
 app.get('/process', clientInputValidations, resizeImage)
 
-app.listen(PORT, () => console.log(`server running at ${PORT}`))
+app.listen(PORT, (): void => console.log(`server running at ${PORT}`))
 
 export default app

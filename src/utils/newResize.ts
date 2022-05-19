@@ -1,14 +1,15 @@
 import sharp, { Sharp } from 'sharp'
+import path from 'path'
 
 export const newResize = async (
     width: number | null,
     height: number | null,
-    filename: string | null
+    filename: string | null,
+    currentDir: string
 ): Promise<Sharp> => {
-    const editedImg = await sharp(`src/full/${filename}.jpg`).resize(
-        width,
-        height
-    )
+    const current = path.join(currentDir, `${filename}.jpg`)
+    const editedImg = await sharp(current).resize(width, height)
+    console.log(__dirname)
     return editedImg
 }
 

@@ -39,9 +39,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.currentDir = void 0;
 var path_1 = __importDefault(require("path"));
 var fileExistsChecker_1 = __importDefault(require("../utils/fileExistsChecker"));
 var newResize_1 = __importDefault(require("../utils/newResize"));
+exports.currentDir = path_1.default.join(__dirname, '..', '..', '/full');
 var resizeImage = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, filename, height, width, f, w, h, imagePath_1, isFileExists, resized, err_1;
     return __generator(this, function (_b) {
@@ -61,7 +63,7 @@ var resizeImage = function (req, res) { return __awaiter(void 0, void 0, void 0,
                 if (!isFileExists) return [3 /*break*/, 3];
                 res.sendFile("/".concat(imagePath_1), { root: path_1.default.join('src/thumb/') });
                 return [3 /*break*/, 5];
-            case 3: return [4 /*yield*/, (0, newResize_1.default)(w, h, f)];
+            case 3: return [4 /*yield*/, (0, newResize_1.default)(w, h, f, exports.currentDir)];
             case 4:
                 resized = _b.sent();
                 resized.toFile("src/thumb/".concat(imagePath_1), function (err) {
