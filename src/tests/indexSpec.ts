@@ -8,5 +8,4 @@ describe('test endpoint response error', () => {
         const res = await req.get('/process')
         expect(res.status).toBe(400)
     })
-
 })

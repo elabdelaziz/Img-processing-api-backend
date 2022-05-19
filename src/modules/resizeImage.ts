@@ -16,25 +16,30 @@ const resizeImage = async (req: Request, res: Response): Promise<void> => {
     try {
         const imagePath = `${f}${w}x${h}.jpg`
         const isFileExists = await fileExistsChecker(
-            path.join(__dirname, '..',`thumb/${imagePath}`)
+            path.join(__dirname, '..', `thumb/${imagePath}`)
         )
 
         if (isFileExists) {
-            res.sendFile(`/${imagePath}`, { root: path.join(__dirname, '..',`/thumb`) })
+            res.sendFile(`/${imagePath}`, {
+                root: path.join(__dirname, '..', `/thumb`),
+            })
         } else {
             const resized = await newResize(w, h, f, currentDir)
-            resized.toFile(path.join(__dirname, '..',`thumb/${imagePath}`), (err: Error) => {
-                if (err) {
-                    res.status(403).send({
-                        ok: 'failed',
-                        message: err.message,
-                    })
-                } else {
-                    res.sendFile(`${imagePath}`, {
-                        root: path.join(__dirname, '..',`/thumb`),
-                    })
+            resized.toFile(
+                path.join(__dirname, '..', `thumb/${imagePath}`),
+                (err: Error) => {
+                    if (err) {
+                        res.status(403).send({
+                            ok: 'failed',
+                            message: err.message,
+                        })
+                    } else {
+                        res.sendFile(`${imagePath}`, {
+                            root: path.join(__dirname, '..', `/thumb`),
+                        })
+                    }
                 }
-            })
+            )
         }
     } catch (err) {
         console.log(err)
